@@ -22,15 +22,13 @@ public class BotDemo extends TelegramLongPollingBot {
         if (update.hasMessage()) {
             Message message = update.getMessage();
             if (message.hasText()) {
-                System.out.println(message.getText());
-                SendMessage sendMessage = new SendMessage();
-                sendMessage.setChatId(String.valueOf(message.getChatId()));
-                sendMessage.setText("Принято");
-                try {
-                    this.execute(sendMessage);
-                } catch (TelegramApiException e) {
-                    throw new RuntimeException(e);
-                }
+
+               // /start
+                // /convertForDate - запрашивает валюту
+                // /showAll - доступные валюты для конвертации
+                // /help - все доступные команды
+                // /convert - конмертирует пару валют
+
 
             }
 
@@ -38,4 +36,17 @@ public class BotDemo extends TelegramLongPollingBot {
 
 
     }
+    public void sendMessage (String chatId, String textMessage){
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(chatId);
+        sendMessage.setText(textMessage);
+
+        try {
+            this.execute(sendMessage);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
