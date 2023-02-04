@@ -66,6 +66,10 @@ public class HelpCommandValidator implements CommandValidator {
         return false;
     }
 
+    public static String help (){
+
+    }
+
 
     @Override
     public String validatingCommand() {
