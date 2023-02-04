@@ -4,7 +4,7 @@ import org.example.validator.CommandValidator;
 
 public class ShowAllCommandValidator implements CommandValidator {
 
-    private static final int REQUIRED_ARGUMENTS_NUMBER = 0;
+    private static final int REQUIRED_ARGUMENTS_NUMBER =0;
 
     // тут так же надо посмотреть что пользователь ввел именно 1 аргумент и показать все валюты
 
@@ -15,7 +15,7 @@ public class ShowAllCommandValidator implements CommandValidator {
     public boolean isValid(String[] arguments) {
         // todo: Возвращаем результат проверки - валидна ли комманда.
         //   Никаких действий больше не нужно делать здесь!
-        if (arguments.length != REQUIRED_ARGUMENTS_NUMBER) {
+        if (arguments.length != REQUIRED_ARGUMENTS_NUMBER){
             return false;
         } else {
             // тут наверное ссылочка на апи

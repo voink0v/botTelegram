@@ -29,6 +29,9 @@ public class ConvertForDateCommandValidator implements CommandValidator {
         }catch (NumberFormatException e){
             return false;
         }
+        // todo: не забывай форматировать код.
+        //  Код с одинаковым уровнем вложенности должен иметь одинаковые отступы.
+        //  Достаточно вызвать автоформат и убрать лишние пустые строки
 
                 try {
                     LocalDate.parse(arguments [CONVERTABLE_DATE_INDEX], DATE_TIME_FORMATTER);
