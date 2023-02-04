@@ -1,2 +1,5 @@
 # Project exclude paths
 /target/
+
+# игнорируем папку с локальными штуками ide, не нужными для проекта
+.idea

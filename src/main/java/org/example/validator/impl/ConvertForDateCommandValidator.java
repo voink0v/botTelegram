@@ -19,9 +19,11 @@ public class ConvertForDateCommandValidator implements CommandValidator {
 
     @Override
     public boolean isValid(String[] arguments) {
+        //todo: метод всегда возвращает false
         if (arguments.length  != REQUIRED_ARGUMENTS_NUMBER ) {
             return false;
         }
+
         try {
             Long.parseLong(arguments [CONVERTABLE_AMOUNT_INDEX]);
         }catch (NumberFormatException e){
