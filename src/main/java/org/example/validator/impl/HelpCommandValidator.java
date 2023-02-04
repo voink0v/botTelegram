@@ -12,9 +12,13 @@ public class HelpCommandValidator implements CommandValidator {
     // нам нужен просто первый элемент массива
 
 
+
     @Override
     public boolean isValid(String[] arguments) {
-
+        // todo: грубая ошибка! Класс, занимающийся валидацией выполняет команду!
+        //  Это нарушает принцип единой ответственности
+        // Правильно будет так: провалидировали команду.
+        // Если валидна, то передаём её на исполнение какому-нибудь executor-у
         if (arguments.length == EQUIRED_ARGUMENTS_NUMBER) {
 
             /*if ("/help" == arguments[EQUIRED_ARGUMENTS_NUMBER]){
@@ -49,6 +53,7 @@ public class HelpCommandValidator implements CommandValidator {
             System.out.println("/convert usd rub 1000 ");
             System.out.println("меняем валюту usd в рубли по актуальному курсу, наминалом 1000 долларов");
 
+            // todo: много лишних отступов, код не отформатирован, читается с усилием.
 
         } else {
 
@@ -57,6 +62,7 @@ public class HelpCommandValidator implements CommandValidator {
 
         } // пишем просто, что команда не валидна и ретернем фолс
 
+        // todo: должна быть именно валидация: тру или фолс.
         return false;
     }
 

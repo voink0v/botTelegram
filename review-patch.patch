@@ -1,0 +1,136 @@
+Subject: [PATCH] Оставил комментарии с замечаниями
+---
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 832b55a6d83c24e5264fc1adcaac9e5e75fbd1cd)
++++ b/.gitignore	(revision fa08a20b1457b7a00fe857cfcb6b0c0a520fbe02)
+@@ -1,2 +1,5 @@
+ # Project exclude paths
+-/target/
+\ No newline at end of file
++/target/
++
++# игнорируем папку с локальными штуками ide, не нужными для проекта
++.idea
+Index: src/main/java/org/example/validator/impl/ConvertForDateCommandValidator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/validator/impl/ConvertForDateCommandValidator.java b/src/main/java/org/example/validator/impl/ConvertForDateCommandValidator.java
+--- a/src/main/java/org/example/validator/impl/ConvertForDateCommandValidator.java	(revision 832b55a6d83c24e5264fc1adcaac9e5e75fbd1cd)
++++ b/src/main/java/org/example/validator/impl/ConvertForDateCommandValidator.java	(revision fa08a20b1457b7a00fe857cfcb6b0c0a520fbe02)
+@@ -19,14 +19,19 @@
+ 
+     @Override
+     public boolean isValid(String[] arguments) {
++        //todo: метод всегда возвращает false
+         if (arguments.length  != REQUIRED_ARGUMENTS_NUMBER ) {
+             return false;
+         }
++
+         try {
+             Long.parseLong(arguments [CONVERTABLE_AMOUNT_INDEX]);
+         }catch (NumberFormatException e){
+             return false;
+         }
++        // todo: не забывай форматировать код.
++        //  Код с одинаковым уровнем вложенности должен иметь одинаковые отступы.
++        //  Достаточно вызвать автоформат и убрать лишние пустые строки
+ 
+                 try {
+                     LocalDate.parse(arguments [CONVERTABLE_DATE_INDEX], DATE_TIME_FORMATTER);
+Index: src/main/java/org/example/validator/impl/HelpCommandValidator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/validator/impl/HelpCommandValidator.java b/src/main/java/org/example/validator/impl/HelpCommandValidator.java
+--- a/src/main/java/org/example/validator/impl/HelpCommandValidator.java	(revision 832b55a6d83c24e5264fc1adcaac9e5e75fbd1cd)
++++ b/src/main/java/org/example/validator/impl/HelpCommandValidator.java	(revision fa08a20b1457b7a00fe857cfcb6b0c0a520fbe02)
+@@ -12,9 +12,13 @@
+     // нам нужен просто первый элемент массива
+ 
+ 
++
+     @Override
+     public boolean isValid(String[] arguments) {
+-
++        // todo: грубая ошибка! Класс, занимающийся валидацией выполняет команду!
++        //  Это нарушает принцип единой ответственности
++        // Правильно будет так: провалидировали команду.
++        // Если валидна, то передаём её на исполнение какому-нибудь executor-у
+         if (arguments.length == EQUIRED_ARGUMENTS_NUMBER) {
+ 
+             /*if ("/help" == arguments[EQUIRED_ARGUMENTS_NUMBER]){
+@@ -49,6 +53,7 @@
+             System.out.println("/convert usd rub 1000 ");
+             System.out.println("меняем валюту usd в рубли по актуальному курсу, наминалом 1000 долларов");
+ 
++            // todo: много лишних отступов, код не отформатирован, читается с усилием.
+ 
+         } else {
+ 
+@@ -57,6 +62,7 @@
+ 
+         } // пишем просто, что команда не валидна и ретернем фолс
+ 
++        // todo: должна быть именно валидация: тру или фолс.
+         return false;
+     }
+ 
+Index: src/main/java/org/example/validator/impl/ShowAllCommandValidator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/validator/impl/ShowAllCommandValidator.java b/src/main/java/org/example/validator/impl/ShowAllCommandValidator.java
+--- a/src/main/java/org/example/validator/impl/ShowAllCommandValidator.java	(revision 832b55a6d83c24e5264fc1adcaac9e5e75fbd1cd)
++++ b/src/main/java/org/example/validator/impl/ShowAllCommandValidator.java	(revision fa08a20b1457b7a00fe857cfcb6b0c0a520fbe02)
+@@ -13,13 +13,16 @@
+ 
+     @Override
+     public boolean isValid(String[] arguments) {
++        // todo: Возвращаем результат проверки - валидна ли комманда.
++        //   Никаких действий больше не нужно делать здесь!
+         if (arguments.length != REQUIRED_ARGUMENTS_NUMBER){
+             return false;
+         } else {
+             // тут наверное ссылочка на апи
+         }
+ 
+-
++        // todo: У тебя есть только одно условие, при котором поманда будет невалидна (фолс)
++        //    Во всех остальных случаях - тру. Возвращай в конце тру
+         // return false; не знаю, надо ли возвращать тут тру (или фолс)))))))
+     }
+ 
+Index: src/main/java/org/example/validator/impl/StartCommandValidator.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/validator/impl/StartCommandValidator.java b/src/main/java/org/example/validator/impl/StartCommandValidator.java
+--- a/src/main/java/org/example/validator/impl/StartCommandValidator.java	(revision 832b55a6d83c24e5264fc1adcaac9e5e75fbd1cd)
++++ b/src/main/java/org/example/validator/impl/StartCommandValidator.java	(revision fa08a20b1457b7a00fe857cfcb6b0c0a520fbe02)
+@@ -3,12 +3,16 @@
+ import org.example.validator.CommandValidator;
+ 
+ public class StartCommandValidator implements CommandValidator {
++
++    // todo: Сделай автоформат!
+  private static final int REQUIRED_ARGUMENTS_NUMBER =0; // так же проверяем
+ 
+ 
+     @Override
+     public boolean isValid(String[] arguments) {
+ 
++        // todo: должна быть только валидация! Ничего стартовать здесь не нужно!
++        //  Если код успешно прошёл валидацию, то будет отрабатывать дальнейшая логика, которую мы ещё не написали
+         if (arguments.length != REQUIRED_ARGUMENTS_NUMBER){
+             return false;
+         } else {

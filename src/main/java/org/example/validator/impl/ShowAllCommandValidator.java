@@ -13,13 +13,16 @@ public class ShowAllCommandValidator implements CommandValidator {
 
     @Override
     public boolean isValid(String[] arguments) {
+        // todo: Возвращаем результат проверки - валидна ли комманда.
+        //   Никаких действий больше не нужно делать здесь!
         if (arguments.length != REQUIRED_ARGUMENTS_NUMBER){
             return false;
         } else {
             // тут наверное ссылочка на апи
         }
 
-
+        // todo: У тебя есть только одно условие, при котором поманда будет невалидна (фолс)
+        //    Во всех остальных случаях - тру. Возвращай в конце тру
         // return false; не знаю, надо ли возвращать тут тру (или фолс)))))))
     }
 
