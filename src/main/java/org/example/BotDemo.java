@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.validator.MessageValidator;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -7,6 +8,8 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class BotDemo extends TelegramLongPollingBot {
+
+    private static MessageValidator messageValidator;
 
 
     public String getBotUsername() {
@@ -18,24 +21,14 @@ public class BotDemo extends TelegramLongPollingBot {
     }
 
     public void onUpdateReceived(Update update) {
-        System.out.println("Сообщение получено");
-        if (update.hasMessage()) {
-            Message message = update.getMessage();
-            if (message.hasText()) {
+      if(messageValidator.isValid(update.getMessage())){
 
-               // /start
-                // /convertForDate - запрашивает валюту
-                // /showAll - доступные валюты для конвертации
-                // /help - все доступные команды
-                // /convert - конмертирует пару валют
-
-
-            }
-
-        }
+      }
 
 
     }
+
+
     public void sendMessage (String chatId, String textMessage){
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(chatId);
