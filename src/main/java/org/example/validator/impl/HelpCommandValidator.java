@@ -60,3 +60,4 @@ public class HelpCommandValidator implements CommandValidator {
         return "/help";
     }
 }
+//`
