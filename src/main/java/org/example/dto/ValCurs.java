@@ -20,7 +20,7 @@ public class ValCurs {
     @XmlAttribute(name = "name")
     private String name;
 
-    @XmlAttribute
+    @XmlTransient
     private List<org.example.dto.Valute> getValute() {
         return valute;
     }
