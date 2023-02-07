@@ -21,7 +21,7 @@ public class ValCurs {
     private String name;
 
     @XmlTransient
-    private List<org.example.dto.Valute> getValute() {
+    public List<org.example.dto.Valute> getValute() {
         return valute;
     }
 
