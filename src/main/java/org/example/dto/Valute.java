@@ -21,6 +21,19 @@ public class Valute {
     @XmlAttribute (name = "ID")
     private String id;
 
+    public Valute() {
+
+    }
+
+    public Valute(int numCode, String charCode, int nominal, String name, double value, String id) {
+        this.numCode = numCode;//5 "" 6.L
+        this.charCode = charCode;
+        this.nominal = nominal;
+        this.name = name;
+        this.value = value;
+        this.id = id;
+    }
+
     @XmlTransient
     public int getNumCode() {
         return numCode;

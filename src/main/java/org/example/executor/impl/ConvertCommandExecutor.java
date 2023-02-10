@@ -18,9 +18,8 @@ public class ConvertCommandExecutor implements CommandExecutor {
 
     @Override
     public String getProcessableCommand() {
+        return  "/convert";
 
-
-        return null;
     }
 
     @Override

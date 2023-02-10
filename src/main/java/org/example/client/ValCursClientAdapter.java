@@ -1,6 +1,7 @@
 package org.example.client;
 
 import org.example.dto.ValCurs;
+import org.example.dto.Valute;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -29,6 +30,14 @@ public class ValCursClientAdapter {
         String rawValCurs = valCursClient.getRawValCurs();
         BufferedReader bufferedReader = new BufferedReader(new StringReader(rawValCurs));
         StreamSource streamSource = new StreamSource(bufferedReader);
-        return ((ValCurs) unmarshaller.unmarshal(streamSource));
+        ValCurs valCurs = (ValCurs) unmarshaller.unmarshal(streamSource);
+
+        valCurs.getValute().add(makeStabRub());
+        return valCurs;
+
+    }
+
+    public Valute makeStabRub () {
+       return  new Valute(-1, "RUB", 1, "RUB", 1d, "RUB");
     }
 }
